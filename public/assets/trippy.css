@@ -1,0 +1,563 @@
+/* =========================================
+   TRIPPY POPUP + FLOATING ASSISTANT
+   ========================================= */
+
+.trippy-overlay[hidden] {
+    display: none !important;
+}
+
+.trippy-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+}
+
+.trippy-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(4px);
+}
+
+.trippy-modal {
+    position: relative;
+    width: min(92vw, 860px);
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(2, 6, 23, 0.35);
+    border: 1px solid #dbe5df;
+    margin: 5vh auto;
+    z-index: 2;
+}
+
+.trippy-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #0f172a;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.trippy-close:hover {
+    background: #e2e8f0;
+}
+
+.trippy-header {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 22px;
+    padding: 28px 28px 18px;
+    background:
+        linear-gradient(135deg, #155e45 0%, #1f7a57 55%, #facc15 100%);
+    color: white;
+}
+
+.trippy-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trippy-avatar-image,
+.trippy-avatar-fallback {
+    width: 150px;
+    height: 190px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.18);
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+.trippy-avatar-fallback {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: 800;
+    color: white;
+}
+
+.trippy-header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.trippy-badge {
+    display: inline-block;
+    width: fit-content;
+    margin: 0 0 10px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.trippy-header-text h2 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    line-height: 1.1;
+}
+
+.trippy-header-text p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+}
+
+.trippy-welcome-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 18px 24px 10px;
+    background: #ffffff;
+}
+
+.trippy-chip,
+.trippy-chip-link {
+    appearance: none;
+    border: 1px solid #cfe4d8;
+    background: #f0fdf4;
+    color: #155e45;
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.trippy-chip:hover,
+.trippy-chip-link:hover {
+    background: #dcfce7;
+}
+
+.trippy-chat-log {
+    flex: 1;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: #f8fafc;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.trippy-message {
+    display: flex;
+    max-width: 86%;
+}
+
+.trippy-assistant {
+    align-self: flex-start;
+}
+
+.trippy-user {
+    align-self: flex-end;
+}
+
+.trippy-bubble {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px 16px 16px 5px;
+    padding: 14px 16px;
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.trippy-user .trippy-bubble {
+    background: #155e45;
+    color: white;
+    border-color: #155e45;
+    border-radius: 16px 16px 5px 16px;
+}
+
+.trippy-bubble strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #14532d;
+    font-size: 12px;
+}
+
+.trippy-user .trippy-bubble strong {
+    color: #dcfce7;
+}
+
+.trippy-bubble p {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.trippy-source {
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.trippy-status {
+    min-height: 18px;
+    padding: 0 24px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.trippy-form {
+    padding: 14px 24px 22px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.trippy-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.trippy-compose {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.trippy-compose textarea {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    resize: vertical;
+    min-height: 48px;
+    max-height: 160px;
+    font: inherit;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.trippy-compose textarea:focus {
+    outline: 2px solid #bbf7d0;
+    border-color: #15803d;
+}
+
+.trippy-compose button {
+    border: none;
+    background: #155e45;
+    color: white;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.trippy-compose button:hover {
+    background: #104b37;
+}
+
+.trippy-compose button:disabled,
+.trippy-compose textarea:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.trippy-note {
+    margin: 10px 0 0;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.trippy-launcher {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9997;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 14px 10px 10px;
+    background: #155e45;
+    color: white;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+}
+
+.trippy-launcher:hover {
+    background: #104b37;
+}
+
+.trippy-launcher-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #facc15;
+    color: #14532d;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.trippy-launcher-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+}
+
+.trippy-launcher-text strong {
+    font-size: 14px;
+}
+
+.trippy-launcher-text small {
+    font-size: 11px;
+    opacity: 0.88;
+}
+
+@media (max-width: 860px) {
+    .trippy-modal {
+        width: min(94vw, 700px);
+    }
+
+    .trippy-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .trippy-hero {
+        order: -1;
+    }
+
+    .trippy-header-text {
+        align-items: center;
+    }
+
+    .trippy-header-text p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .trippy-modal {
+        width: 95vw;
+        max-height: 92vh;
+        margin: 4vh auto;
+        border-radius: 18px;
+    }
+
+    .trippy-header {
+        padding: 20px 18px 16px;
+    }
+
+    .trippy-header-text h2 {
+        font-size: 28px;
+    }
+
+    .trippy-welcome-actions,
+    .trippy-chat-log,
+    .trippy-form {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .trippy-compose {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .trippy-compose button {
+        width: 100%;
+    }
+
+    .trippy-launcher-text {
+        display: none;
+    }
+
+    .trippy-launcher {
+        padding-right: 10px;
+    }
+}
+
+/* ========================================
+   TRIPPY CHARACTER ANIMATIONS
+   ======================================== */
+
+/* Smooth popup entrance */
+.trippy-overlay:not([hidden]) .trippy-modal {
+    animation: trippyPopupEnter 0.55s
+        cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes trippyPopupEnter {
+    from {
+        opacity: 0;
+        transform: translateY(36px) scale(0.90);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Floating character */
+.trippy-avatar-image,
+.trippy-avatar-fallback {
+    transform-origin: center bottom;
+
+    animation:
+        trippyFloat 3.5s ease-in-out infinite,
+        trippyGreeting 0.9s ease-in-out 0.5s 2;
+}
+
+@keyframes trippyFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+@keyframes trippyGreeting {
+    0%, 100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.13);
+    }
+}
+
+/* Soft glow behind Trippy */
+.trippy-hero {
+    position: relative;
+    isolation: isolate;
+}
+
+.trippy-hero::before {
+    content: "";
+    position: absolute;
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    filter: blur(20px);
+    z-index: -1;
+    animation: trippyGlow 3s ease-in-out infinite;
+}
+
+@keyframes trippyGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 0.95;
+        transform: scale(1.15);
+    }
+}
+
+/* Animate greeting title */
+.trippy-overlay:not([hidden]) .trippy-header-text h2 {
+    animation: trippyTextEnter 0.65s ease-out both;
+    animation-delay: 0.25s;
+}
+
+@keyframes trippyTextEnter {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Floating launcher */
+.trippy-launcher {
+    animation: trippyLauncherEnter 0.7s ease-out both;
+}
+
+@keyframes trippyLauncherEnter {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .trippy-overlay:not([hidden]) .trippy-modal,
+    .trippy-avatar-image,
+    .trippy-avatar-fallback,
+    .trippy-hero::before,
+    .trippy-overlay:not([hidden]) .trippy-header-text h2,
+    .trippy-launcher {
+        animation: none !important;
+    }
+}
+
+/* Trippy character image presentation */
+.trippy-avatar-image {
+    width: 190px;
+    height: 230px;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transform-origin: center bottom;
+}
+
+/* Floating animation */
+.trippy-avatar-image {
+    animation: trippyFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes trippyFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(1.5deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trippy-avatar-image {
+        animation: none;
+    }
+}

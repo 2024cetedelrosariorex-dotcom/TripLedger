@@ -1,0 +1,88 @@
+
+/* TripLedger AI Reconciliation Analyst */
+
+.ai-analysis-panel {
+    margin-top: 22px;
+    border: 1px solid #cfe3d7;
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.ai-analysis-panel[hidden] {
+    display: none !important;
+}
+
+.ai-analysis-heading {
+    padding: 20px 24px;
+    background: #eef8f2;
+    border-bottom: 1px solid #d4e8dc;
+}
+
+.ai-analysis-heading h2 {
+    margin: 0 0 7px;
+    color: #155e45;
+    font-size: 20px;
+}
+
+.ai-analysis-heading p {
+    margin: 0;
+    font-size: 13px;
+    color: #475569;
+}
+
+.ai-analysis-body {
+    padding: 22px 24px;
+}
+
+.ai-analysis-summary {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.ai-analysis-count {
+    min-width: 76px;
+    text-align: center;
+    border-radius: 10px;
+    background: #e7f5ed;
+    padding: 12px;
+    font-size: 26px;
+    font-weight: 800;
+    color: #155e45;
+}
+
+.ai-analysis-results {
+    white-space: pre-wrap;
+    line-height: 1.8;
+    font-size: 14px;
+    color: #334155;
+    overflow-wrap: anywhere;
+}
+
+.ai-analysis-status {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.ai-analysis-note {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#generateAiAnalysis:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+@media print {
+    .ai-analysis-panel {
+        display: none !important;
+    }
+}

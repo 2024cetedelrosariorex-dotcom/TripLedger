@@ -1,0 +1,1351 @@
+
+:root {
+    --primary: #155e45;
+    --primary-hover: #104d39;
+    --background: #f4f7f6;
+    --surface: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --success: #166534;
+    --danger: #b91c1c;
+    --warning: #92400e;
+}
+
+.app-layout {
+    min-height: 100vh;
+    display: flex;
+    background: var(--background);
+}
+
+.app-main {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.app-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.app-button-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.app-button-primary:hover {
+    background: var(--primary-hover);
+}
+
+.app-button-secondary {
+    background: white;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.app-button-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.app-table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.app-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.app-table th,
+.app-table td {
+    padding: 13px 15px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.app-table th {
+    color: var(--muted);
+    background: #f8fafc;
+    font-size: 13px;
+}
+
+.app-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+}
+
+.app-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 370px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.app-toast-error {
+    background: var(--danger);
+}
+
+@media (max-width: 768px) {
+    .app-layout {
+        display: block;
+    }
+
+    .app-main {
+        padding: 18px;
+    }
+
+    .app-card {
+        padding: 18px;
+    }
+
+    .app-toast {
+        left: 15px;
+        right: 15px;
+        max-width: none;
+    }
+}
+
+
+/* =========================================
+   TRIPLEDGER SIDEBAR AND DASHBOARD
+   ========================================= */
+
+.tl-sidebar {
+    width: 260px;
+    min-width: 260px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    background: #155e45;
+    color: #fff;
+    padding: 24px 15px;
+    z-index: 100;
+}
+
+.tl-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 10px 30px;
+}
+
+.tl-sidebar-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.tl-sidebar-brand strong {
+    display: block;
+    font-size: 20px;
+}
+
+.tl-sidebar-brand small {
+    display: block;
+    margin-top: 5px;
+    color: #cde5da;
+    font-size: 12px;
+}
+
+.tl-sidebar-caption {
+    padding: 0 14px;
+    margin-bottom: 12px;
+    color: #b6d7c7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.tl-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tl-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    color: #e0f0e8;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.tl-nav-link:hover,
+.tl-nav-link.active {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+}
+
+.tl-nav-link.active {
+    border-left: 3px solid #facc15;
+}
+
+.tl-nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 23px;
+    height: 23px;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+.tl-sidebar-bottom {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tl-sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    min-width: 0;
+}
+
+.tl-sidebar-profile > div {
+    min-width: 0;
+}
+
+.tl-sidebar-profile strong {
+    display: block;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.tl-sidebar-profile small {
+    display: block;
+    color: #cde5da;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.tl-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #155e45;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.tl-logout-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tl-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* Top navigation bar */
+
+.tl-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #fff;
+    padding: 22px 30px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tl-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.tl-topbar h1 {
+    font-size: 23px;
+    margin: 0;
+}
+
+.tl-topbar p {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.tl-topbar-user {
+    font-size: 13px;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.tl-online-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #16a34a;
+    margin-right: 7px;
+}
+
+.tl-menu-toggle {
+    display: none;
+    background: #f1f5f9;
+    color: #155e45;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 13px;
+    cursor: pointer;
+    font-size: 19px;
+}
+
+/* Dashboard content */
+
+.tl-content {
+    flex: 1;
+    min-width: 0;
+    background: #f4f7f6;
+}
+
+.tl-dashboard-body {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tl-welcome {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.tl-welcome h2 {
+    font-size: 23px;
+    color: #155e45;
+}
+
+.tl-welcome p {
+    color: #64748b;
+    margin-top: 9px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.tl-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.tl-stat-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 13px;
+    padding: 25px;
+}
+
+.tl-stat-card .tl-stat-label {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.tl-stat-card .tl-stat-number {
+    color: #155e45;
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 14px;
+}
+
+.tl-section-heading {
+    margin-bottom: 17px;
+    font-size: 19px;
+}
+
+.tl-quick-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.tl-recent-table {
+    min-width: 640px;
+}
+
+.tl-status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tl-status-returned {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.tl-status-outstanding {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* Mobile and tablet */
+
+@media (max-width: 900px) {
+    .tl-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 6px 0 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .tl-sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .tl-menu-toggle {
+        display: inline-block;
+    }
+
+    .tl-topbar {
+        padding: 18px;
+    }
+
+    .tl-dashboard-body {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 650px) {
+    .tl-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .tl-topbar-user {
+        display: none;
+    }
+
+    .tl-topbar h1 {
+        font-size: 19px;
+    }
+
+    .tl-welcome h2 {
+        font-size: 20px;
+    }
+}
+
+
+
+/* =====================================
+   TRIPLEDGER RECORDS PAGE
+   ===================================== */
+
+.tl-record-filters {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+    gap: 18px;
+}
+
+.tl-filter-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 9px;
+}
+
+.tl-filter-field input,
+.tl-filter-field select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e293b;
+    font: inherit;
+    font-size: 14px;
+}
+
+.tl-filter-field input:focus,
+.tl-filter-field select:focus {
+    outline: 2px solid #a7d9be;
+    outline-offset: 1px;
+    border-color: #155e45;
+}
+
+.tl-record-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.tl-records-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.tl-records-heading .tl-section-heading {
+    margin-bottom: 5px;
+}
+
+.tl-record-count {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.tl-records-table {
+    min-width: 950px;
+}
+
+.tl-records-table td {
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.tl-records-table th {
+    white-space: nowrap;
+}
+
+.tl-details-link {
+    color: #155e45;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tl-details-link:hover {
+    text-decoration: underline;
+}
+
+.tl-record-error {
+    color: #b91c1c;
+    background: #fff1f2;
+    border-color: #fecdd3;
+}
+
+.tl-empty-icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.app-empty-state h3 {
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.app-empty-state p {
+    max-width: 460px;
+    margin: 0 auto 20px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+@media (max-width: 1150px) {
+    .tl-record-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .tl-record-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .tl-records-heading {
+        align-items: stretch;
+    }
+
+    .tl-records-heading .app-button {
+        width: 100%;
+    }
+
+    .tl-record-actions .app-button {
+        flex: 1;
+    }
+}
+
+/* =====================================
+   TRIPLEDGER NEW ISSUANCE PAGE
+   ===================================== */
+
+.tl-issuance-card {
+    max-width: 900px;
+}
+
+.tl-issuance-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 28px;
+}
+
+.tl-issuance-heading h2 {
+    font-size: 20px;
+    color: #1e293b;
+}
+
+.tl-issuance-heading p {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.tl-form-label {
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 20px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tl-issuance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.tl-full-width {
+    grid-column: 1 / -1;
+}
+
+.tl-issuance-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 9px;
+    color: #334155;
+}
+
+.tl-issuance-field input,
+.tl-issuance-field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    background: white;
+    font: inherit;
+    font-size: 14px;
+    color: #1e293b;
+}
+
+.tl-issuance-field input:focus,
+.tl-issuance-field textarea:focus {
+    outline: 2px solid #a7d9be;
+    outline-offset: 1px;
+    border-color: #155e45;
+}
+
+.tl-issuance-field textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.tl-issuance-field small {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 7px;
+}
+
+.tl-optional {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.tl-issuance-note {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 28px;
+}
+
+.tl-issuance-note strong {
+    color: #166534;
+    font-size: 14px;
+}
+
+.tl-issuance-note p {
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 6px;
+}
+
+.tl-issuance-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 24px;
+    margin-top: 30px;
+}
+
+.tl-issuance-actions button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.tl-issuance-alert {
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.tl-alert-success {
+    background: #dcfce7;
+    border: 1px solid #86efac;
+    color: #166534;
+}
+
+.tl-alert-error {
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+@media (max-width: 650px) {
+    .tl-issuance-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tl-full-width {
+        grid-column: auto;
+    }
+
+    .tl-issuance-card {
+        max-width: none;
+    }
+
+    .tl-issuance-heading {
+        align-items: flex-start;
+    }
+
+    .tl-issuance-actions .app-button {
+        flex: 1;
+    }
+}
+
+/* ======================================
+   TRIPLEDGER TICKET DETAILS PAGE
+   ====================================== */
+
+.tl-detail-back {
+    margin-bottom: 20px;
+}
+
+.tl-detail-back a {
+    color: #155e45;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.tl-detail-back a:hover {
+    text-decoration: underline;
+}
+
+.tl-detail-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tl-detail-heading h2 {
+    color: #155e45;
+}
+
+.tl-detail-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.tl-detail-section-heading .tl-section-heading {
+    margin: 0;
+}
+
+.tl-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.tl-detail-item {
+    min-width: 0;
+}
+
+.tl-detail-item small {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 9px;
+}
+
+.tl-detail-item strong {
+    color: #1e293b;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    line-height: 1.6;
+}
+
+.tl-detail-wide {
+    grid-column: 1 / -1;
+}
+
+.tl-detail-help {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.tl-detail-form {
+    max-width: 700px;
+}
+
+.tl-detail-form .tl-issuance-field {
+    margin-bottom: 20px;
+}
+
+.tl-detail-divider {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+}
+
+.tl-detail-subheading {
+    color: #1e293b;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+/* Audit history timeline */
+
+.tl-audit-list {
+    margin-top: 20px;
+}
+
+.tl-audit-entry {
+    display: flex;
+    gap: 16px;
+    position: relative;
+    padding-bottom: 25px;
+}
+
+.tl-audit-entry:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 18px;
+    bottom: 0;
+    width: 2px;
+    background: #d9e8df;
+}
+
+.tl-audit-marker {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #155e45;
+    border: 3px solid #c5ebd6;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.tl-audit-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.tl-audit-content > strong {
+    display: block;
+    font-size: 14px;
+    color: #155e45;
+}
+
+.tl-audit-content p {
+    margin-top: 8px;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.tl-audit-meta {
+    color: #64748b !important;
+}
+
+.app-button-danger:hover {
+    background: #991b1b;
+}
+
+@media (max-width: 650px) {
+    .tl-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .tl-detail-wide {
+        grid-column: auto;
+    }
+
+    .tl-detail-section-heading {
+        align-items: flex-start;
+    }
+
+    .tl-detail-form .app-button {
+        width: 100%;
+    }
+}
+
+/* ======================================
+   TRIPLEDGER OUTSTANDING REPORT
+   ====================================== */
+
+.tl-report-intro {
+    margin-bottom: 25px;
+}
+
+.tl-report-intro h2 {
+    font-size: 24px;
+    color: #155e45;
+    margin-bottom: 10px;
+}
+
+.tl-report-intro p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 5px;
+}
+
+.tl-report-filters {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 18px;
+}
+
+.tl-report-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.tl-report-summary-label {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.tl-report-total {
+    color: #155e45;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.tl-report-meta {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+.tl-report-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tl-report-table {
+    min-width: 680px;
+}
+
+.tl-report-table th,
+.tl-report-table td {
+    font-size: 13px;
+}
+
+.tl-report-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.tl-report-footer p {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.tl-print-heading {
+    display: none;
+}
+
+@media (max-width: 750px) {
+    .tl-report-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .tl-report-actions {
+        width: 100%;
+    }
+
+    .tl-report-actions .app-button {
+        flex: 1;
+    }
+}
+
+/* ======================================
+   PRINT-FRIENDLY OUTSTANDING REPORT
+   ====================================== */
+
+@media print {
+
+    @page {
+        size: A4 landscape;
+        margin: 14mm;
+    }
+
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    .app-layout {
+        display: block !important;
+        background: #fff !important;
+        min-height: 0 !important;
+    }
+
+    .tl-sidebar,
+    .tl-topbar,
+    .no-print {
+        display: none !important;
+    }
+
+    .tl-content,
+    .tl-report-main {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #fff !important;
+    }
+
+    .tl-print-heading {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .tl-print-heading h2 {
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .tl-print-heading h3 {
+        font-size: 16px;
+        margin-top: 12px;
+    }
+
+    .tl-print-heading p {
+        font-size: 12px;
+    }
+
+    .tl-report-results {
+        display: block !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .tl-report-summary {
+        margin-bottom: 18px;
+    }
+
+    .tl-report-total {
+        font-size: 26px;
+        color: #000 !important;
+    }
+
+    .tl-report-table-wrap {
+        overflow: visible !important;
+    }
+
+    .tl-report-table {
+        width: 100% !important;
+        min-width: 0 !important;
+        border-collapse: collapse;
+    }
+
+    .tl-report-table th,
+    .tl-report-table td {
+        border: 1px solid #999 !important;
+        padding: 9px !important;
+        font-size: 11px !important;
+        color: #000 !important;
+    }
+
+    .tl-report-table th {
+        background: #eee !important;
+    }
+
+    .tl-report-table thead {
+        display: table-header-group;
+    }
+
+    .tl-report-table tr {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .tl-report-footer {
+        margin-top: 20px;
+        border-top: 1px solid #999;
+    }
+
+    .tl-report-footer p,
+    .tl-report-meta,
+    .tl-report-summary-label {
+        color: #333 !important;
+    }
+}
+
+/* =====================================
+   TRIPLEDGER ISSUANCE CORRECTION
+   ===================================== */
+
+.tl-correction-notice {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #d97706;
+    border-radius: 9px;
+    padding: 18px;
+    margin-bottom: 28px;
+}
+
+.tl-correction-notice strong {
+    display: block;
+    color: #92400e;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.tl-correction-notice p {
+    color: #78350f;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.tl-readonly-input {
+    background: #f1f5f9 !important;
+    color: #64748b !important;
+    cursor: not-allowed;
+}
+
+.tl-issuance-field input[readonly]:focus {
+    outline: none;
+    border-color: #cbd5e1;
+}
+
+@media (max-width: 650px) {
+    .tl-correction-notice {
+        padding: 15px;
+    }
+}
+
+/* ======================================
+   MOBILE SIDEBAR OVERLAY
+   ====================================== */
+
+.tl-sidebar-overlay {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .tl-sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.5);
+        z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease,
+                    visibility 0.25s ease;
+    }
+
+    .tl-sidebar-overlay.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .tl-sidebar {
+        z-index: 100;
+    }
+}
+
+/* ==========================================
+   TRIPLEDGER CUSTOM CONFIRMATION MODAL
+   ========================================== */
+
+body.tl-modal-open {
+    overflow: hidden;
+}
+
+.tl-confirm-overlay[hidden] {
+    display: none !important;
+}
+
+.tl-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10, 22, 18, 0.65);
+    backdrop-filter: blur(3px);
+}
+
+.tl-confirm-dialog {
+    width: 100%;
+    max-width: 440px;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #dce6df;
+    border-radius: 16px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+    color: #1e293b;
+    text-align: center;
+}
+
+.tl-confirm-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 20px;
+    background: #e7f5ed;
+    border-radius: 50%;
+    color: #155e45;
+    font-size: 29px;
+    font-weight: 700;
+}
+
+.tl-confirm-dialog h2 {
+    margin: 0 0 12px;
+    color: #155e45;
+    font-size: 22px;
+}
+
+.tl-confirm-dialog p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 28px;
+    overflow-wrap: anywhere;
+}
+
+.tl-confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.tl-confirm-actions .app-button {
+    min-width: 130px;
+}
+
+@media (max-width: 480px) {
+    .tl-confirm-dialog {
+        padding: 25px 20px;
+    }
+
+    .tl-confirm-actions {
+        flex-direction: column-reverse;
+    }
+
+    .tl-confirm-actions .app-button {
+        width: 100%;
+    }
+}
