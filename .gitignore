@@ -1,0 +1,28 @@
+
+# Local database credentials
+/app/config.php
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Local editor settings
+.vscode/
+
+# Dependencies
+/vendor/
+
+# Local database backups
+*.sql.gz
+*.bak
+/test/.runtime/
+/backups/
+
+# Temporary connection tests
+/check_db.php
+/test_connection.php

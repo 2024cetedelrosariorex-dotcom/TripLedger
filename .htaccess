@@ -1,0 +1,10 @@
+# Defense for the existing XAMPP subdirectory URL. The preferred DocumentRoot is public/.
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule (^|/)\. - [F,L]
+    RewriteRule ^(?:app|database|scripts|test|docs|backups)(?:/|$) - [F,L,NC]
+</IfModule>
+<FilesMatch "^(README\.md|AGENTS\.md|.*\.log|.*\.bak)$">
+    Require all denied
+</FilesMatch>
